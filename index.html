@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0a0f1a" />
+  <meta name="description" content="Vademécum Enfermería — Consulta farmacológica rápida y segura para profesionales de enfermería" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Vademécum ENF" />
+  <title>Vademécum Enfermería</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icono-192.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icono-192.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════
+       SPLASH SCREEN
+  ══════════════════════════════════════════════ -->
+  <div id="splash-screen" class="splash" aria-hidden="true">
+    <div class="splash-bg"></div>
+    <div class="splash-content">
+      <div class="splash-logo-ring">
+        <svg class="splash-ring-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle class="ring-track" cx="60" cy="60" r="54" stroke="#0e2a3a" stroke-width="4"/>
+          <circle class="ring-progress" cx="60" cy="60" r="54" stroke="url(#ringGrad)" stroke-width="4"
+            stroke-linecap="round" stroke-dasharray="339.3" stroke-dashoffset="339.3"/>
+          <defs>
+            <linearGradient id="ringGrad" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#00d4ff"/>
+              <stop offset="100%" stop-color="#00ffb3"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="splash-cross">
+          <span></span><span></span>
+        </div>
+      </div>
+      <div class="splash-title">
+        <span class="splash-title-vade">VADEMÉCUM</span>
+        <span class="splash-title-enf">ENFERMERÍA</span>
+      </div>
+      <div class="splash-tagline">Farmacología clínica al instante</div>
+      <div class="splash-suite">MediShort360 Suite</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       APP SHELL
+  ══════════════════════════════════════════════ -->
+  <div id="app" class="app hidden">
+
+    <!-- TOP BAR -->
+    <header class="topbar" role="banner">
+      <button class="topbar-menu-btn" id="menuToggle" aria-label="Menú principal" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+      <div class="topbar-title">
+        <span class="topbar-title-vade">VADEMÉCUM</span>
+        <span class="topbar-title-enf">ENF</span>
+      </div>
+      <button class="topbar-search-btn" id="searchToggle" aria-label="Buscar medicamento">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+      </button>
+    </header>
+
+    <!-- SEARCH BAR (colapsable) -->
+    <div class="searchbar-wrap" id="searchBarWrap" aria-hidden="true">
+      <div class="searchbar">
+        <svg class="searchbar-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input
+          type="search"
+          id="searchInput"
+          class="searchbar-input"
+          placeholder="Buscar medicamento..."
+          autocomplete="off"
+          autocorrect="off"
+          spellcheck="false"
+          aria-label="Buscar medicamento"
+        />
+        <button class="searchbar-clear hidden" id="searchClear" aria-label="Limpiar búsqueda">✕</button>
+      </div>
+      <div class="search-results" id="searchResults" role="listbox" aria-label="Resultados de búsqueda"></div>
+    </div>
+
+    <!-- SIDE NAV OVERLAY -->
+    <div class="nav-overlay hidden" id="navOverlay" aria-hidden="true"></div>
+
+    <!-- SIDE NAV -->
+    <nav class="sidenav" id="sideNav" role="navigation" aria-label="Navegación principal">
+      <div class="sidenav-header">
+        <div class="sidenav-logo">
+          <div class="sidenav-cross"><span></span><span></span></div>
+          <div>
+            <div class="sidenav-title-vade">VADEMÉCUM</div>
+            <div class="sidenav-title-enf">ENFERMERÍA</div>
+          </div>
+        </div>
+        <button class="sidenav-close" id="navClose" aria-label="Cerrar menú">✕</button>
+      </div>
+
+      <ul class="sidenav-list">
+        <li>
+          <a href="#" class="sidenav-link active" data-view="home">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+            Inicio
+          </a>
+        </li>
+        <li>
+          <a href="#" class="sidenav-link" data-view="categorias">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            Categorías
+          </a>
+        </li>
+        <li>
+          <a href="#" class="sidenav-link" data-view="favoritos">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+            Favoritos
+          </a>
+        </li>
+        <li>
+          <a href="#" class="sidenav-link" data-view="alto-riesgo">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Alto Riesgo
+          </a>
+        </li>
+        <li>
+          <a href="#" class="sidenav-link" data-view="acerca">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+            Acerca de
+          </a>
+        </li>
+      </ul>
+
+      <div class="sidenav-footer">
+        <div class="sidenav-version">v1.0.0 — MediShort360</div>
+        <div class="sidenav-disclaimer">Solo uso de referencia clínica. No reemplaza el juicio profesional.</div>
+      </div>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content" id="mainContent" role="main">
+
+      <!-- ── VIEW: HOME ── -->
+      <section class="view active" id="view-home" data-view="home">
+
+        <div class="home-hero">
+          <div class="home-hero-badge">FARMACOLOGÍA CLÍNICA</div>
+          <h1 class="home-hero-title">Administración<br/>segura en<br/><em>menos de 30s</em></h1>
+          <p class="home-hero-sub">Fichas farmacológicas verificadas para enfermería UCI, emergencias y hospitalización.</p>
+        </div>
+
+        <!-- Quick stats -->
+        <div class="stats-row">
+          <div class="stat-card">
+            <span class="stat-num" id="statMeds">5</span>
+            <span class="stat-label">Medicamentos</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">4</span>
+            <span class="stat-label">Niveles de info</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">🔴</span>
+            <span class="stat-label">Alto riesgo</span>
+          </div>
+        </div>
+
+        <!-- Categorías rápidas -->
+        <div class="section-label">CATEGORÍAS PRINCIPALES</div>
+        <div class="category-grid" id="categoryGrid">
+          <button class="category-card" data-category="vasopresores">
+            <span class="cat-icon">❤️</span>
+            <span class="cat-name">Vasopresores</span>
+          </button>
+          <button class="category-card" data-category="antibioticos">
+            <span class="cat-icon">🦠</span>
+            <span class="cat-name">Antibióticos</span>
+          </button>
+          <button class="category-card" data-category="electrolitos">
+            <span class="cat-icon">⚡</span>
+            <span class="cat-name">Electrolitos</span>
+          </button>
+          <button class="category-card" data-category="insulinas">
+            <span class="cat-icon">💉</span>
+            <span class="cat-name">Insulinas</span>
+          </button>
+          <button class="category-card" data-category="diureticos">
+            <span class="cat-icon">💧</span>
+            <span class="cat-name">Diuréticos</span>
+          </button>
+          <button class="category-card" data-category="anticoagulantes">
+            <span class="cat-icon">🩸</span>
+            <span class="cat-name">Anticoagulantes</span>
+          </button>
+          <button class="category-card" data-category="antiarritmicos">
+            <span class="cat-icon">📈</span>
+            <span class="cat-name">Antiarrítmicos</span>
+          </button>
+          <button class="category-card" data-category="analgesia">
+            <span class="cat-icon">🫁</span>
+            <span class="cat-name">Analgesia/Sedación</span>
+          </button>
+        </div>
+
+        <!-- Alto riesgo highlight -->
+        <div class="section-label">⚠️ MEDICAMENTOS ALTO RIESGO</div>
+        <div class="risk-list" id="riskListHome"></div>
+
+        <!-- Todos los medicamentos -->
+        <div class="section-label">MEDICAMENTOS DISPONIBLES</div>
+        <div class="med-list" id="medListHome"></div>
+
+      </section>
+
+      <!-- ── VIEW: MEDICAMENTO ── -->
+      <section class="view hidden" id="view-med" data-view="med">
+        <div id="medContent"></div>
+      </section>
+
+      <!-- ── VIEW: CATEGORÍAS ── -->
+      <section class="view hidden" id="view-categorias" data-view="categorias">
+        <div class="view-header">
+          <h2 class="view-title">Categorías</h2>
+        </div>
+        <div class="cat-full-grid" id="catFullGrid"></div>
+      </section>
+
+      <!-- ── VIEW: FAVORITOS ── -->
+      <section class="view hidden" id="view-favoritos" data-view="favoritos">
+        <div class="view-header">
+          <h2 class="view-title">Favoritos</h2>
+        </div>
+        <div class="med-list" id="favList">
+          <div class="empty-state">
+            <span class="empty-icon">⭐</span>
+            <p>Aún no tienes favoritos.<br/>Toca la estrella en cualquier ficha.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── VIEW: ALTO RIESGO ── -->
+      <section class="view hidden" id="view-alto-riesgo" data-view="alto-riesgo">
+        <div class="view-header">
+          <h2 class="view-title">🔴 Alto Riesgo</h2>
+          <p class="view-subtitle">Medicamentos que requieren doble verificación y vigilancia especial</p>
+        </div>
+        <div class="med-list" id="riskListFull"></div>
+      </section>
+
+      <!-- ── VIEW: ACERCA ── -->
+      <section class="view hidden" id="view-acerca" data-view="acerca">
+        <div class="view-header">
+          <h2 class="view-title">Acerca de</h2>
+        </div>
+        <div class="acerca-content">
+          <div class="acerca-logo-block">
+            <div class="acerca-cross"><span></span><span></span></div>
+            <div class="acerca-app-name">VADEMÉCUM ENFERMERÍA</div>
+            <div class="acerca-version">Versión 1.0.0</div>
+          </div>
+          <div class="acerca-card">
+            <h3>Objetivo</h3>
+            <p>Brindar información farmacológica clínica verificada para que el personal de enfermería pueda administrar medicamentos de forma segura en menos de 30 segundos.</p>
+          </div>
+          <div class="acerca-card">
+            <h3>Población objetivo</h3>
+            <ul>
+              <li>Estudiantes y licenciados en enfermería</li>
+              <li>Personal de UCI y cuidados críticos</li>
+              <li>Enfermería de emergencias</li>
+              <li>Hospitalización general</li>
+              <li>Pediatría y gineco-obstetricia</li>
+            </ul>
+          </div>
+          <div class="acerca-card">
+            <h3>Fuentes</h3>
+            <ul>
+              <li>DailyMed / FDA</li>
+              <li>MedlinePlus / NIH</li>
+              <li>Surviving Sepsis Campaign</li>
+              <li>Guías clínicas internacionales</li>
+              <li>OMS / OPS</li>
+            </ul>
+          </div>
+          <div class="acerca-disclaimer">
+            <strong>⚠️ Aviso importante</strong><br/>
+            Esta aplicación es solo una herramienta de referencia clínica. No reemplaza el juicio clínico profesional, los protocolos institucionales ni la valoración individualizada del paciente. Siempre consulte las guías de su institución.
+          </div>
+          <div class="acerca-suite">Parte de <strong>MediShort360 Suite</strong></div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- BOTTOM NAV -->
+    <nav class="bottomnav" role="navigation" aria-label="Navegación inferior">
+      <button class="bn-btn active" data-view="home" aria-label="Inicio">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        <span>Inicio</span>
+      </button>
+      <button class="bn-btn" data-view="categorias" aria-label="Categorías">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        <span>Categorías</span>
+      </button>
+      <button class="bn-btn" data-view="alto-riesgo" aria-label="Alto Riesgo">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Alto Riesgo</span>
+      </button>
+      <button class="bn-btn" data-view="favoritos" aria-label="Favoritos">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+        <span>Favoritos</span>
+      </button>
+    </nav>
+
+  </div><!-- /app -->
+
+  <!-- Back to top -->
+  <button class="back-to-top hidden" id="backToTop" aria-label="Volver arriba">↑</button>
+
+  <!-- Scripts -->
+  <script src="data/noradrenalina.js"></script>
+  <script src="data/vancomicina.js"></script>
+  <script src="data/insulina-regular.js"></script>
+  <script src="data/cloruro-potasio.js"></script>
+  <script src="data/meropenem.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(() => {});
+      });
+    }
+  </script>
+
+</body>
+</html>
