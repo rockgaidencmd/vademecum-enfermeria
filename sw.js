@@ -3,7 +3,7 @@
    MediShort360 Suite · Soporte offline
 ═══════════════════════════════════════════════ */
 
-const CACHE_NAME = 'vademecum-enf-v2';
+const CACHE_NAME = 'vademecum-enf-v3';
 
 // Rutas relativas (compatible con GitHub Pages en subcarpeta)
 const ASSETS = [
