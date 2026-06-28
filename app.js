@@ -15,6 +15,7 @@ const State = {
   currentMed: null,
   favorites: [],
   recentMeds: [],
+  recentExpanded: false,
   searchOpen: false,
 };
 
@@ -28,8 +29,7 @@ const Dom = {
   themeToggle:   $('themeToggle'),
   searchToggle:  $('searchToggle'),
   recentList:    $('recentList'),
-  verTodosBtn:   $('verTodosBtn'),
-  verTodosCount: $('verTodosCount'),
+  recentClear:   $('recentClear'),
   searchBarWrap: $('searchBarWrap'),
   searchInput:   $('searchInput'),
   searchClear:   $('searchClear'),
@@ -77,6 +77,7 @@ function initApp() {
   bindSideNav();
   bindHistory();
   bindThemeToggle();
+  if (Dom.recentClear) Dom.recentClear.addEventListener('click', clearRecent);
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -142,11 +143,16 @@ function isFavorite(id) {
 /* ═══════════════════════════════════════════════════════
    RECIENTES
 ═══════════════════════════════════════════════════════ */
-const RECENT_MAX = 5;
+const RECENT_MAX = 15;     // tope de medicamentos guardados en el historial
+const RECENT_PREVIEW = 5;  // cuántos se muestran antes de "Ver más"
 
 function loadRecent() {
   try {
-    State.recentMeds = JSON.parse(localStorage.getItem('vade_recent') || '[]');
+    const raw = JSON.parse(localStorage.getItem('vade_recent') || '[]');
+    // Migración: formato viejo era ["id", ...]; nuevo es [{id, ts}, ...]
+    State.recentMeds = raw
+      .map(r => (typeof r === 'string' ? { id: r, ts: null } : r))
+      .filter(r => r && r.id);
   } catch { State.recentMeds = []; }
 }
 
@@ -157,15 +163,40 @@ function saveRecent() {
 }
 
 function addToRecent(id) {
-  State.recentMeds = [id, ...State.recentMeds.filter(r => r !== id)].slice(0, RECENT_MAX);
+  const rest = State.recentMeds.filter(r => r.id !== id);
+  State.recentMeds = [{ id, ts: Date.now() }, ...rest].slice(0, RECENT_MAX);
   saveRecent();
   renderRecent();
+}
+
+function clearRecent() {
+  State.recentMeds = [];
+  State.recentExpanded = false;
+  saveRecent();
+  renderRecent();
+}
+
+// Etiqueta de día relativa: Hoy / Ayer / dd/mm/aaaa
+function recentDayBucket(ts) {
+  if (!ts) return 'Anterior';
+  const startOfDay = d => new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
+  const diffDays = Math.round((startOfDay(new Date()) - startOfDay(new Date(ts))) / 86400000);
+  if (diffDays <= 0) return 'Hoy';
+  if (diffDays === 1) return 'Ayer';
+  return new Date(ts).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
 }
 
 function renderRecent() {
   if (!Dom.recentList) return;
 
-  if (State.recentMeds.length === 0) {
+  const items = State.recentMeds
+    .map(r => ({ med: MEDS_DB.find(m => m.id === r.id), ts: r.ts }))
+    .filter(x => x.med);
+
+  if (Dom.recentClear) Dom.recentClear.hidden = items.length === 0;
+
+  if (items.length === 0) {
+    State.recentExpanded = false;
     Dom.recentList.innerHTML = `
       <div class="empty-state empty-state--sm">
         <span class="empty-icon">🕐</span>
@@ -174,12 +205,37 @@ function renderRecent() {
     return;
   }
 
-  const meds = State.recentMeds
-    .map(id => MEDS_DB.find(m => m.id === id))
-    .filter(Boolean);
+  let html = '';
+  if (State.recentExpanded) {
+    // Vista expandida: agrupada por día
+    let lastBucket = null;
+    for (const { med, ts } of items) {
+      const bucket = recentDayBucket(ts);
+      if (bucket !== lastBucket) {
+        html += `<div class="recent-day">${bucket}</div>`;
+        lastBucket = bucket;
+      }
+      html += medCardHTML(med);
+    }
+  } else {
+    // Vista compacta: solo los más recientes
+    html = items.slice(0, RECENT_PREVIEW).map(x => medCardHTML(x.med)).join('');
+  }
 
-  Dom.recentList.innerHTML = meds.map(med => medCardHTML(med)).join('');
+  if (items.length > RECENT_PREVIEW) {
+    html += State.recentExpanded
+      ? `<button class="recent-toggle" id="recentToggle" type="button">Ver menos</button>`
+      : `<button class="recent-toggle" id="recentToggle" type="button">Ver más (${items.length - RECENT_PREVIEW}) ›</button>`;
+  }
+
+  Dom.recentList.innerHTML = html;
   bindMedCards(Dom.recentList);
+
+  const toggle = $('recentToggle');
+  if (toggle) toggle.addEventListener('click', () => {
+    State.recentExpanded = !State.recentExpanded;
+    renderRecent();
+  });
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -300,12 +356,6 @@ function renderHome() {
 
   // Vistos recientemente
   renderRecent();
-
-  // Botón ver todos
-  if (Dom.verTodosCount) Dom.verTodosCount.textContent = MEDS_DB.length;
-  if (Dom.verTodosBtn) {
-    Dom.verTodosBtn.addEventListener('click', () => navigateTo('categorias'));
-  }
 }
 
 /* ═══════════════════════════════════════════════════════
