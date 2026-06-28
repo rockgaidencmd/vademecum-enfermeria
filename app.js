@@ -24,6 +24,7 @@ const Dom = {
   splash:        $('splash-screen'),
   app:           $('app'),
   menuToggle:    $('menuToggle'),
+  themeToggle:   $('themeToggle'),
   searchToggle:  $('searchToggle'),
   searchBarWrap: $('searchBarWrap'),
   searchInput:   $('searchInput'),
@@ -71,6 +72,32 @@ function initApp() {
   bindBackToTop();
   bindSideNav();
   bindHistory();
+  bindThemeToggle();
+}
+
+/* ═══════════════════════════════════════════════════════
+   TEMA CLARO / OSCURO
+═══════════════════════════════════════════════════════ */
+function bindThemeToggle() {
+  if (!Dom.themeToggle) return;
+  Dom.themeToggle.addEventListener('click', () => {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const next = isLight ? null : 'light';
+    if (next) {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('vade_theme', 'light');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.removeItem('vade_theme');
+    }
+    updateThemeColor();
+  });
+}
+
+function updateThemeColor() {
+  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute('content', isLight ? '#e8eef6' : '#0a0f1a');
 }
 
 /* ═══════════════════════════════════════════════════════
