@@ -40,7 +40,6 @@ const Dom = {
   mainContent:   $('mainContent'),
   medContent:    $('medContent'),
   medListHome:   $('medListHome'),
-  riskListHome:  $('riskListHome'),
   riskListFull:  $('riskListFull'),
   catFullGrid:   $('catFullGrid'),
   favList:       $('favList'),
@@ -298,13 +297,6 @@ function navigateToMed(medId) {
 function renderHome() {
   if (!Dom.statMeds) return;
   Dom.statMeds.textContent = MEDS_DB.length;
-
-  // Alto riesgo en home (solo críticos)
-  if (Dom.riskListHome) {
-    const criticos = MEDS_DB.filter(m => m.prioridad === 'critical' || m.altoRiesgo);
-    Dom.riskListHome.innerHTML = criticos.map(med => medCardHTML(med)).join('');
-    bindMedCards(Dom.riskListHome);
-  }
 
   // Vistos recientemente
   renderRecent();
