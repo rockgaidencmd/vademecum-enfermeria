@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Limpiando caché...</title>
+  <style>
+    body { margin: 0; background: #090e1b; color: #e8f0fe; font-family: sans-serif;
+           display: flex; flex-direction: column; align-items: center;
+           justify-content: center; min-height: 100vh; gap: 16px; text-align: center; padding: 20px; }
+    .spinner { width: 48px; height: 48px; border: 3px solid #1a2a3d;
+               border-top-color: #00d4ff; border-radius: 50%;
+               animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    p { color: #7a9ab8; font-size: 0.9rem; }
+    strong { color: #00d4ff; }
+  </style>
+</head>
+<body>
+  <div class="spinner"></div>
+  <strong>Limpiando caché...</strong>
+  <p>Esto solo tarda unos segundos.<br/>Serás redirigido automáticamente.</p>
+  <script>
+    async function limpiarTodo() {
+      // 1. Borrar todos los cachés del SW
+      if ('caches' in window) {
+        const keys = await caches.keys();
+        await Promise.all(keys.map(k => caches.delete(k)));
+      }
+      // 2. Desregistrar todos los Service Workers
+      if ('serviceWorker' in navigator) {
+        const regs = await navigator.serviceWorker.getRegistrations();
+        await Promise.all(regs.map(r => r.unregister()));
+      }
+      // 3. Redirigir al inicio con cache-busting
+      window.location.replace('/?v=' + Date.now());
+    }
+    limpiarTodo();
+  </script>
+</body>
+</html>
