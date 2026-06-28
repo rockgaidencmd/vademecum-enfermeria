@@ -14,6 +14,7 @@ const State = {
   currentView: 'home',
   currentMed: null,
   favorites: [],
+  recentMeds: [],
   searchOpen: false,
 };
 
@@ -26,6 +27,9 @@ const Dom = {
   menuToggle:    $('menuToggle'),
   themeToggle:   $('themeToggle'),
   searchToggle:  $('searchToggle'),
+  recentList:    $('recentList'),
+  verTodosBtn:   $('verTodosBtn'),
+  verTodosCount: $('verTodosCount'),
   searchBarWrap: $('searchBarWrap'),
   searchInput:   $('searchInput'),
   searchClear:   $('searchClear'),
@@ -66,6 +70,7 @@ function initSplash() {
 ═══════════════════════════════════════════════════════ */
 function initApp() {
   loadFavorites();
+  loadRecent();
   renderHome();
   bindNavigation();
   bindSearch();
@@ -133,6 +138,49 @@ function toggleFavorite(id) {
 
 function isFavorite(id) {
   return State.favorites.includes(id);
+}
+
+/* ═══════════════════════════════════════════════════════
+   RECIENTES
+═══════════════════════════════════════════════════════ */
+const RECENT_MAX = 5;
+
+function loadRecent() {
+  try {
+    State.recentMeds = JSON.parse(localStorage.getItem('vade_recent') || '[]');
+  } catch { State.recentMeds = []; }
+}
+
+function saveRecent() {
+  try {
+    localStorage.setItem('vade_recent', JSON.stringify(State.recentMeds));
+  } catch {}
+}
+
+function addToRecent(id) {
+  State.recentMeds = [id, ...State.recentMeds.filter(r => r !== id)].slice(0, RECENT_MAX);
+  saveRecent();
+  renderRecent();
+}
+
+function renderRecent() {
+  if (!Dom.recentList) return;
+
+  if (State.recentMeds.length === 0) {
+    Dom.recentList.innerHTML = `
+      <div class="empty-state empty-state--sm">
+        <span class="empty-icon">🕐</span>
+        <p>Aquí aparecerán los últimos medicamentos que consultes.</p>
+      </div>`;
+    return;
+  }
+
+  const meds = State.recentMeds
+    .map(id => MEDS_DB.find(m => m.id === id))
+    .filter(Boolean);
+
+  Dom.recentList.innerHTML = meds.map(med => medCardHTML(med)).join('');
+  bindMedCards(Dom.recentList);
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -227,6 +275,9 @@ function navigateToMed(medId) {
   // Limpiar bottom nav activo
   document.querySelectorAll('.bn-btn').forEach(btn => btn.classList.remove('active'));
 
+  // Registrar como visto recientemente
+  addToRecent(medId);
+
   // Render ficha
   Dom.medContent.innerHTML = renderMedCard(med);
   Dom.mainContent.scrollTo({ top: 0, behavior: 'instant' });
@@ -248,17 +299,20 @@ function renderHome() {
   if (!Dom.statMeds) return;
   Dom.statMeds.textContent = MEDS_DB.length;
 
-  // Lista completa
-  if (Dom.medListHome) {
-    Dom.medListHome.innerHTML = MEDS_DB.map(med => medCardHTML(med)).join('');
-    bindMedCards(Dom.medListHome);
-  }
-
   // Alto riesgo en home (solo críticos)
   if (Dom.riskListHome) {
     const criticos = MEDS_DB.filter(m => m.prioridad === 'critical' || m.altoRiesgo);
     Dom.riskListHome.innerHTML = criticos.map(med => medCardHTML(med)).join('');
     bindMedCards(Dom.riskListHome);
+  }
+
+  // Vistos recientemente
+  renderRecent();
+
+  // Botón ver todos
+  if (Dom.verTodosCount) Dom.verTodosCount.textContent = MEDS_DB.length;
+  if (Dom.verTodosBtn) {
+    Dom.verTodosBtn.addEventListener('click', () => navigateTo('categorias'));
   }
 }
 
