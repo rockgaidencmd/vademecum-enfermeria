@@ -60,6 +60,171 @@
   --sidenav-w:   280px;
 }
 
+/* ─── TEMA CLARO ─────────────────────────────────────── */
+[data-theme="light"] {
+  --bg-base:        #f2f6fa;
+  --bg-surface:     #e8eef6;
+  --bg-card:        #ffffff;
+  --bg-card-hover:  #f5f9ff;
+  --bg-input:       #edf2f8;
+  --border:         #cad8e8;
+  --border-bright:  #afc2d8;
+
+  --cyan:           #0095b8;
+  --cyan-dim:       #007a99;
+  --cyan-glow:      rgba(0, 149, 184, 0.1);
+  --teal:           #00997a;
+  --gold:           #b8901f;
+  --gold-dim:       #8a6a15;
+
+  --risk-red:       #d42b2b;
+  --risk-orange:    #c96800;
+  --risk-yellow:    #b89200;
+  --risk-green:     #00a855;
+  --risk-red-bg:    rgba(212, 43, 43, 0.08);
+  --risk-orange-bg: rgba(201, 104, 0, 0.08);
+  --risk-yellow-bg: rgba(184, 146, 0, 0.08);
+  --risk-green-bg:  rgba(0, 168, 85, 0.08);
+
+  --text-primary:   #0d2033;
+  --text-secondary: #3a5c75;
+  --text-muted:     #7a9ab0;
+  --text-cyan:      #0095b8;
+
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.08);
+  --shadow-cyan: 0 0 20px rgba(0, 149, 184, 0.15);
+}
+
+/* Overrides de colores hardcodeados en modo claro */
+[data-theme="light"] body {
+  color-scheme: light;
+}
+[data-theme="light"] .splash {
+  background: var(--bg-base);
+}
+[data-theme="light"] .splash-bg {
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 40%, rgba(0, 149, 184, 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 50% 80%, rgba(0, 120, 150, 0.04) 0%, transparent 60%);
+}
+[data-theme="light"] .home-hero {
+  background: linear-gradient(160deg, rgba(0, 149, 184, 0.05) 0%, transparent 60%);
+}
+[data-theme="light"] .home-hero::before {
+  color: rgba(0, 149, 184, 0.06);
+}
+[data-theme="light"] .home-hero-badge {
+  background: rgba(0, 149, 184, 0.08);
+  border-color: rgba(0, 149, 184, 0.2);
+}
+[data-theme="light"] .home-hero-cross,
+[data-theme="light"] .sidenav-cross,
+[data-theme="light"] .acerca-cross,
+[data-theme="light"] .med-branding-cross {
+  background: rgba(0, 149, 184, 0.1);
+  border-color: rgba(0, 149, 184, 0.25);
+}
+[data-theme="light"] .nav-overlay {
+  background: rgba(0, 30, 60, 0.35);
+}
+[data-theme="light"] .sidenav.open {
+  box-shadow: 4px 0 30px rgba(0, 0, 0, 0.15);
+}
+[data-theme="light"] .sidenav-link.active {
+  background: rgba(0, 149, 184, 0.08);
+}
+[data-theme="light"] .searchbar-input:focus {
+  box-shadow: 0 0 0 2px rgba(0, 149, 184, 0.12);
+}
+[data-theme="light"] .med-branding {
+  background: rgba(0, 149, 184, 0.03);
+}
+[data-theme="light"] .arb-text {
+  color: #b83333;
+}
+[data-theme="light"] .sb-item {
+  color: #b83333;
+}
+[data-theme="light"] .alert-item {
+  color: #9a4d00;
+}
+[data-theme="light"] .acerca-disclaimer {
+  background: rgba(160, 120, 0, 0.06);
+  border-color: rgba(160, 120, 0, 0.2);
+  color: #6a5000;
+}
+[data-theme="light"] .quick-summary {
+  background: rgba(0, 149, 184, 0.04);
+  border-color: rgba(0, 149, 184, 0.15);
+}
+[data-theme="light"] .mono {
+  background: rgba(0, 149, 184, 0.08);
+}
+[data-theme="light"] .module-block.renal .module-header {
+  background: rgba(0, 149, 184, 0.08);
+}
+[data-theme="light"] .module-block.respiratorio .module-header {
+  background: rgba(0, 153, 122, 0.08);
+}
+[data-theme="light"] .pill.cyan {
+  background: rgba(0, 149, 184, 0.1);
+  border-color: rgba(0, 149, 184, 0.25);
+}
+[data-theme="light"] .med-tag.cyan {
+  background: rgba(0, 149, 184, 0.08);
+  border-color: rgba(0, 149, 184, 0.2);
+}
+[data-theme="light"] .med-fav-btn.active {
+  background: rgba(184, 144, 31, 0.08);
+}
+[data-theme="light"] .risk-badge {
+  background: rgba(212, 43, 43, 0.08);
+  border-color: rgba(212, 43, 43, 0.2);
+}
+[data-theme="light"] .disclaimer-overlay {
+  background: rgba(40, 70, 100, 0.45);
+  backdrop-filter: blur(4px);
+}
+[data-theme="light"] .disclaimer-box {
+  background: linear-gradient(160deg, #f0f6ff 0%, #e8f2ff 100%);
+  border-color: rgba(0, 149, 184, 0.25);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 149, 184, 0.08);
+}
+[data-theme="light"] .disclaimer-footer {
+  background: rgba(0, 0, 0, 0.03);
+}
+[data-theme="light"] .disclaimer-body .disc-final {
+  background: rgba(0, 149, 184, 0.06);
+  border-left-color: var(--cyan);
+  color: var(--text-primary);
+}
+@media (min-width: 481px) {
+  [data-theme="light"] .app {
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.12);
+  }
+}
+
+/* ─── BOTÓN TOGGLE DE TEMA ────────────────────────────── */
+.topbar-theme-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  transition: color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+.topbar-theme-btn:hover {
+  color: var(--cyan);
+  background: var(--cyan-glow);
+}
+.topbar-theme-btn .icon-sun { display: none; }
+.topbar-theme-btn .icon-moon { display: block; }
+[data-theme="light"] .topbar-theme-btn .icon-sun { display: block; }
+[data-theme="light"] .topbar-theme-btn .icon-moon { display: none; }
+
 /* ─── RESET ───────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
