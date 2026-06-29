@@ -219,6 +219,13 @@ window.MEDS_DB.push({
       'Temperatura':                'NO congelar · 15-25°C',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar de inmediato. Desechar sobrante.',
+      dosisRestante:    'No conservar. Desechar inmediatamente.',
+      infusionPreparada:'24 h a temperatura ambiente / 48 h refrigerada (2–8 °C) en SF 0.9% o SG 5%.',
+      notas:            'Proteger de la luz. Incompatible con soluciones alcalinas (bicarbonato sódico). Puede mezclarse con tramadol en la misma perfusión.',
+    },
+
     presentaciones: [
       'Ondansetrón 4 mg/2 mL ampolla (2 mg/mL) - Zofran®, Ondansetrón Normon®',
       'Ondansetrón 8 mg/4 mL ampolla',

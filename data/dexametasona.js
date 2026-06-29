@@ -231,6 +231,13 @@ window.MEDS_DB.push({
       'Temperatura':                'NO congelar · 15-25°C',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar dentro de las 24 h. Conservar refrigerada y protegida de la luz si no se usa inmediatamente.',
+      dosisRestante:    'Conservar hasta 24 h en refrigerador (2–8 °C) protegido de la luz.',
+      infusionPreparada:'24 h a temperatura ambiente / 48 h refrigerada (2–8 °C) en SF 0.9% o SG 5%.',
+      notas:            'Compatible con la mayoría de diluyentes. Verificar compatibilidad si se mezcla con otros fármacos.',
+    },
+
     presentaciones: [
       'Fortecortín® 4 mg/mL — ampolla 1 mL (4 mg) o 2 mL (8 mg) - Merck',
       'Fortecortín® 40 mg/5 mL (8 mg/mL) — ampolla 5 mL (alta concentración)',

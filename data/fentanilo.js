@@ -246,6 +246,13 @@ window.MEDS_DB.push({
       'Temperatura':                'NO congelar · 15-25°C',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar de inmediato. Desechar sobrante (opiáceo controlado — registrar destrucción según normativa).',
+      dosisRestante:    'No conservar. Desechar y registrar conforme a normativa de estupefacientes. Requiere firma de dos profesionales.',
+      infusionPreparada:'24 h a temperatura ambiente / 7 días refrigerada (2–8 °C) protegido de la luz.',
+      notas:            'Fármaco controlado — registrar preparación y destrucción. Compatible con SF 0.9%, SG 5% y soluciones mixtas.',
+    },
+
     presentaciones: [
       'Fentanest® 0.05 mg/mL (50 mcg/mL) — ampolla 3 mL (150 mcg)',
       'Fentanest® 0.05 mg/mL — ampolla 10 mL (500 mcg)',

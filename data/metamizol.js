@@ -209,6 +209,13 @@ window.MEDS_DB.push({
       'Aspecto':                 'Transparente, ligeramente amarillenta — desechar si amarillo intenso o rosa',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar de inmediato. Desechar sobrante.',
+      dosisRestante:    'No conservar. Desechar inmediatamente.',
+      infusionPreparada:'Usar dentro de las 6 h de preparación a temperatura ambiente. Proteger de la luz.',
+      notas:            'Incompatible con gluconato de calcio y algunos betalactámicos. Verificar compatibilidad antes de mezclar. Desechar si hay cambio de color (vira a amarillo oscuro).',
+    },
+
     presentaciones: [
       'Metamizol Sódico 2 g/5 mL ampolla (Nolotil® - Boehringer)',
       'Metamizol Sódico 1 g/2 mL ampolla (Metamizol Normon)',

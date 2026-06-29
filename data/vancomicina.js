@@ -180,6 +180,13 @@ window.MEDS_DB.push({
       'Aspecto':                     'Solución clara, incolora a ligeramente amarilla — desechar si hay turbidez o partículas',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Liofilizado reconstituido (concentrado): estable 7 días en refrigerador (2–8 °C). Anotar fecha de reconstitución.',
+      dosisRestante:    'Conservar el concentrado reconstituido hasta 7 días en refrigerador. Diluir la dosis inmediatamente antes de infundir.',
+      infusionPreparada:'24 h a temperatura ambiente / 7 días refrigerada (2–8 °C) en SF 0.9% o SG 5%.',
+      notas:            'Infundir en mínimo 60 min para evitar síndrome del hombre rojo. Concentración máx. periférica: 5 mg/mL. Para dosis altas o infusión continua usar vía central.',
+    },
+
     presentaciones: [
       'Vancomicina HCl 500 mg polvo liofilizado — vial 10 mL',
       'Vancomicina HCl 1000 mg (1 g) polvo liofilizado — vial 20 mL',

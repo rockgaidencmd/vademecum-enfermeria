@@ -245,6 +245,13 @@ window.MEDS_DB.push({
       'Aspecto':                     'Emulsión blanca opalescente uniforme — desechar si separación de fases, partículas',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar de inmediato o dentro de las 6 h máximo de apertura. Técnica aséptica estricta.',
+      dosisRestante:    'Desechar a las 6 h de apertura o al finalizar la infusión. No guardar restos en el vial.',
+      infusionPreparada:'Máximo 12 h por sistema de infusión. Cambiar tubuladuras y frascos cada 12 h.',
+      notas:            'Emulsión lipídica: alto riesgo de crecimiento bacteriano si se contamina. Técnica aséptica obligatoria. Desechar si hay separación de fases o cambio de color.',
+    },
+
     presentaciones: [
       'Propofol 10 mg/mL (1%) — ampolla 20 mL · vial 50, 100 mL',
       'Propofol 20 mg/mL (2%) — vial 50, 100 mL (preferido UCI)',

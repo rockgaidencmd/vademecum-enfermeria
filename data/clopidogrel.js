@@ -236,6 +236,13 @@ window.MEDS_DB.push({
       'Humedad':                      'Proteger de humedad excesiva',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Comprimido: retirar del blíster justo antes de administrar. No preparar con antelación.',
+      dosisRestante:    'Conservar en el blíster original hasta la administración. No partir ni triturar.',
+      infusionPreparada:'No aplica — administración oral exclusivamente.',
+      notas:            'Proteger de la humedad y la luz. Conservar a temperatura ambiente (< 25 °C) en el blíster original.',
+    },
+
     presentaciones: [
       'Plavix® 75 mg comprimidos (marca original Sanofi/BMS)',
       'Plavix® 300 mg comprimidos (dosis de carga)',

@@ -256,6 +256,13 @@ window.MEDS_DB.push({
       'Temperatura':               'NO congelar · 15-25°C',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar dentro de las 24 h si se conserva refrigerada.',
+      dosisRestante:    'Conservar hasta 24 h en refrigerador (2–8 °C). Desechar a las 24 h.',
+      infusionPreparada:'24 h a temperatura ambiente / 8 días refrigerada (2–8 °C) en SF 0.9% o SG 5%.',
+      notas:            'Diluir siempre antes de administrar. No administrar sin diluir: riesgo de paro cardíaco. Concentración máxima 18 mg/mL.',
+    },
+
     presentaciones: [
       'Dalacin C® 150 mg/mL solución inyectable - vial 2 mL (300 mg)',
       'Dalacin C® 150 mg/mL solución inyectable - vial 4 mL (600 mg)',

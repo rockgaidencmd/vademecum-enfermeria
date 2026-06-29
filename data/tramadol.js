@@ -209,6 +209,13 @@ window.MEDS_DB.push({
       'Nota importante':             'Microbiológicamente, usar de inmediato tras preparación. Si debe guardarse refrigerado, máximo 24h antes de infundir.',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar de inmediato. Desechar sobrante.',
+      dosisRestante:    'No conservar. Desechar inmediatamente.',
+      infusionPreparada:'24 h a temperatura ambiente en SF 0.9% o SG 5%.',
+      notas:            'Compatible en la misma perfusión con metamizol, metoclopramida y ondansetrón. Incompatible con diazepam y diclofenac. Proteger de la luz.',
+    },
+
     presentaciones: [
       'Tramadol Clorhidrato 100 mg/2 mL solución inyectable — ampolla 2 mL',
       'Tramadol Clorhidrato 50 mg/1 mL solución inyectable — ampolla 1 mL (menos frecuente en UCI)',

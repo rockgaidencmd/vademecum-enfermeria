@@ -215,6 +215,13 @@ window.MEDS_DB.push({
       'Aspecto':                     'Transparente, incolora — desechar si turbidez o cambio de color',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Unidosis (UDV): usar de inmediato. Frasco multidosis: conservar tapado, proteger de la luz, usar en 28 días.',
+      dosisRestante:    'Desechar sobrante de UDV monodosis. Frasco multidosis: conservar en lugar fresco y seco.',
+      infusionPreparada:'Para nebulización: administrar de inmediato o dentro de 1 h. Para infusión IV: 24 h a temperatura ambiente en SF 0.9%.',
+      notas:            'Desechar si vira a marrón (oxidación). Nebulización es la vía de elección; IV solo para broncoespasmo grave refractario en UCI.',
+    },
+
     presentaciones: [
       'Salbutamol nebulización 5 mg/mL — frasco multidosis 10 mL (Ventolin®)',
       'Salbutamol nebulización 2.5 mg/2.5 mL — monodosis (UDV)',

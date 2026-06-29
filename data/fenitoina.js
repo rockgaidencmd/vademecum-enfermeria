@@ -166,6 +166,13 @@ window.MEDS_DB.push({
       'Aspecto':                'Transparente, incolora — desechar si turbidez o precipitado',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar dentro de las 24 h. Verificar ausencia de precipitado antes de administrar.',
+      dosisRestante:    'Conservar hasta 24 h a temperatura ambiente en la ampolla original. No refrigerar (favorece precipitación).',
+      infusionPreparada:'1–4 h a temperatura ambiente en SF 0.9%. Preparar justo antes de usar.',
+      notas:            'Precipita fácilmente: usar SOLO SF 0.9%. Desechar si aparecen cristales blancos o turbidez. Flush con SF antes y después de la infusión.',
+    },
+
     presentaciones: [
       'Fenitoína 250 mg/5 mL solución inyectable — ampolla 5 mL',
       'Fenitoína 100 mg comprimidos (uso VO)',

@@ -154,6 +154,13 @@ window.MEDS_DB.push({
       'Aspecto':                'Transparente, incolora — desechar si turbidez',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar de inmediato. Desechar sobrante.',
+      dosisRestante:    'No conservar. Desechar inmediatamente.',
+      infusionPreparada:'24 h a temperatura ambiente en SF 0.9% o SG 5%.',
+      notas:            'Proteger de la luz. Desechar si hay cambio de color. Compatible con la mayoría de soluciones IV.',
+    },
+
     presentaciones: [
       'Metoclopramida 10 mg/2 mL solución inyectable — ampolla 2 mL',
       'Metoclopramida 10 mg comprimidos (uso VO)',

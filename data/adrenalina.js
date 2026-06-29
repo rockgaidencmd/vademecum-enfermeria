@@ -189,6 +189,13 @@ window.MEDS_DB.push({
       'Temperatura':              'NO congelar · 15-25°C',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar de inmediato tras la apertura. Desechar cualquier sobrante de la ampolla.',
+      dosisRestante:    'No conservar. Desechar inmediatamente. No reutilizar restos de dosis preparadas.',
+      infusionPreparada:'24 h a temperatura ambiente (protegida de la luz) / 48 h refrigerada (2–8 °C). Usar envases ámbar o cubrir con funda opaca.',
+      notas:            'Desechar si la solución vira a marrón/rosado o aparece precipitado. Compatible con SG 5% y SF 0.9%; no mezclar con soluciones alcalinas.',
+    },
+
     presentaciones: [
       'Adrenalina 1 mg/mL (1:1000) ampolla 1 mL — uso IM/SC',
       'Adrenalina 0.1 mg/mL (1:10,000) jeringa precargada 10 mL — uso IV',

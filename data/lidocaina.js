@@ -251,6 +251,13 @@ window.MEDS_DB.push({
       'Temperatura':              'NO congelar · 15-25°C',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Ampolla monodosis: usar de inmediato. Desechar sobrante.',
+      dosisRestante:    'No conservar ampollas monodosis abiertas. Viales multidosis (con conservante): refrigerar y usar en 30 días.',
+      infusionPreparada:'24 h a temperatura ambiente en SG 5% o SF 0.9%.',
+      notas:            'Para uso IV antiarrítmico usar preparaciones SIN conservantes (benzyl alcohol). Compatible con la mayoría de soluciones IV.',
+    },
+
     presentaciones: [
       'Lidocaína 1% (10 mg/mL) - ampolla 10 mL',
       'Lidocaína 2% (20 mg/mL) - ampolla 10 mL (preferida IV)',

@@ -206,6 +206,13 @@ window.MEDS_DB.push({
       'Aspecto':                  'Transparente, incolora — desechar si turbidez',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar de inmediato. Desechar sobrante (psicotrópico controlado — registrar destrucción).',
+      dosisRestante:    'No conservar. Desechar y registrar conforme a normativa de psicotrópicos.',
+      infusionPreparada:'24 h a temperatura ambiente en SF 0.9% o SG 5%.',
+      notas:            'Fármaco controlado — registrar preparación y destrucción. Estable en mezclas para PCA. Compatible con morfina y fentanilo en co-infusión.',
+    },
+
     presentaciones: [
       'Midazolam 5 mg/5 mL ampolla (1 mg/mL)',
       'Midazolam 15 mg/3 mL ampolla (5 mg/mL)',

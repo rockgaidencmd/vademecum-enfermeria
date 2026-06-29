@@ -172,6 +172,13 @@ window.MEDS_DB.push({
       'Aspecto':                'Transparente, incolora — desechar si turbidez',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar de inmediato. Desechar sobrante.',
+      dosisRestante:    'No conservar. Desechar inmediatamente.',
+      infusionPreparada:'24 h a temperatura ambiente en SF 0.9% (pH alcalino). Evitar SG 5% para infusión continua.',
+      notas:            'Fotosensible — proteger de la luz durante la infusión. Precipita en pH ácido (< 5.5). Incompatible con SG 5% para infusión continua.',
+    },
+
     presentaciones: [
       'Furosemida 40 mg/4 mL solución inyectable — ampolla 4 mL',
       'Furosemida 10 mg/mL solución inyectable — ampolla 2 mL o 4 mL',

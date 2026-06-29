@@ -201,6 +201,13 @@ window.MEDS_DB.push({
       'Aspecto':                         'Solución incolora a levemente amarillenta · Desechar si hay turbidez o partículas',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Liofilizado reconstituido: usar en 2 h a temperatura ambiente. No refrigerar la reconstitución para bolo IV.',
+      dosisRestante:    'Para infusión extendida (3 h): diluir en SF 0.9% y usar en 12 h refrigerada (2–8 °C).',
+      infusionPreparada:'3 h a temperatura ambiente (infusión estándar) / 12 h refrigerada (2–8 °C) en SF 0.9%.',
+      notas:            'La infusión extendida de 3 h mejora la eficacia PK/PD (tiempo > CMI). Preparar la dilución final justo antes de infundir. Preferir SF 0.9% sobre SG 5%.',
+    },
+
     presentaciones: [
       'Meropenem 500 mg polvo liofilizado — vial 20 mL',
       'Meropenem 1000 mg (1 g) polvo liofilizado — vial 30 mL',

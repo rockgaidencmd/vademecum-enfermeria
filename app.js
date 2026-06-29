@@ -859,6 +859,29 @@ function renderNivel2(med) {
     </div>`;
   }
 
+  if (n2.estabilidadUsoClinico) {
+    const euc = n2.estabilidadUsoClinico;
+    html += `
+    <div class="info-row" style="margin-top:14px;">
+      <div class="info-label">⏱️ Vida útil en uso clínico</div>
+      <div class="euc-card">
+        <div class="euc-row">
+          <span class="euc-label">Ampolla/vial abierto</span>
+          <span class="euc-value">${euc.ampollaAbierta}</span>
+        </div>
+        <div class="euc-row">
+          <span class="euc-label">Dosis restante</span>
+          <span class="euc-value">${euc.dosisRestante}</span>
+        </div>
+        <div class="euc-row">
+          <span class="euc-label">Infusión preparada</span>
+          <span class="euc-value">${euc.infusionPreparada}</span>
+        </div>
+        ${euc.notas ? `<div class="euc-nota">⚠️ ${euc.notas}</div>` : ''}
+      </div>
+    </div>`;
+  }
+
   if (n2.presentaciones) {
     html += `
     <div class="info-row" style="margin-top:14px;">

@@ -198,6 +198,13 @@ window.MEDS_DB.push({
       'Tiempo de uso':             'Inmediato tras apertura',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Jeringa precargada monodosis: usar de inmediato. Desechar sobrante.',
+      dosisRestante:    'No conservar. Jeringas monodosis de un solo uso — desechar tras cada administración.',
+      infusionPreparada:'Administración SC o IV directa. No se utiliza en infusión continua de forma habitual.',
+      notas:            'No mezclar con otros fármacos. Si hay presentación multidosis (con benzyl alcohol), conservar refrigerada y usar en 28 días desde apertura.',
+    },
+
     presentaciones: [
       'Enoxaparina 20 mg/0.2 mL jeringa precargada',
       'Enoxaparina 40 mg/0.4 mL jeringa precargada (profilaxis estándar)',

@@ -261,6 +261,13 @@ window.MEDS_DB.push({
       'Temperatura':               'NO congelar · 15-25°C · Proteger luz',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar de inmediato. Desechar sobrante.',
+      dosisRestante:    'No conservar. Desechar inmediatamente.',
+      infusionPreparada:'24 h a temperatura ambiente / 7 días refrigerada (2–8 °C) en SG 5% o SF 0.9%.',
+      notas:            'Compatible con benzodiazepinas y propofol para co-infusión. Proteger de la luz. Desechar si hay cambio de color o precipitado.',
+    },
+
     presentaciones: [
       'Ketolar® 50 mg/mL solución inyectable - vial 10 mL (500 mg)',
       'Ketamina 10 mg/mL solución inyectable (menos común)',

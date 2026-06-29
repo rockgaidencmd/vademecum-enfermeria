@@ -173,6 +173,13 @@ window.MEDS_DB.push({
       'Envase':               'Vidrio o plástico libre de PVC (el PVC puede absorber el fármaco)',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar de inmediato tras la apertura. Desechar cualquier sobrante de la ampolla.',
+      dosisRestante:    'No conservar. Desechar inmediatamente. No reutilizar restos de dosis preparadas.',
+      infusionPreparada:'24 h a temperatura ambiente (15–25 °C) / 48 h refrigerada (2–8 °C)',
+      notas:            'Proteger de la luz durante toda la infusión. Desechar si hay cambio de color (marrón/rosado), turbidez o precipitado visible.',
+    },
+
     presentaciones: [
       'Noradrenalina bitartrato 4 mg/4 mL (1 mg/mL) — ampolla 4 mL',
       'Noradrenalina bitartrato 8 mg/4 mL (2 mg/mL) — ampolla 4 mL',

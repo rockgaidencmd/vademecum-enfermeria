@@ -204,6 +204,13 @@ window.MEDS_DB.push({
       'Temperatura':                  'NO congelar · 15-25°C',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Liofilizado reconstituido: usar dentro de las 24 h si se refrigera.',
+      dosisRestante:    'Conservar reconstitución en refrigerador hasta 48 h. Anotar fecha de reconstitución.',
+      infusionPreparada:'48 h a temperatura ambiente / 7 días refrigerada (2–8 °C) en SF 0.9% o SG 5%.',
+      notas:            'Compatible con la mayoría de soluciones IV. Verificar pH de la mezcla. Desechar si hay turbidez o precipitado.',
+    },
+
     presentaciones: [
       'Famotidina 20 mg vial liofilizado para inyección',
       'Famotidina 20 mg/2 mL ampolla',

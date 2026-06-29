@@ -213,6 +213,13 @@ window.MEDS_DB.push({
       'Temperatura':                  'NO congelar · 15-25°C',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Liofilizado reconstituido: usar dentro de las 4 h a temperatura ambiente o dentro de los 7 días si se refrigera.',
+      dosisRestante:    'Conservar la reconstitución en refrigerador (2–8 °C) y usar dentro de los 7 días. Anotar fecha de reconstitución.',
+      infusionPreparada:'24 h a temperatura ambiente / 10 días refrigerada (2–8 °C) en SF 0.9% o SG 5%.',
+      notas:            'No mezclar con aminoglucósidos en la misma jeringa o bolsa (inactivación mutua).',
+    },
+
     presentaciones: [
       'Cefazolina 1 g vial liofilizado para inyección',
       'Cefazolina 500 mg vial liofilizado',

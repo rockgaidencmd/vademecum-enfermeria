@@ -265,6 +265,13 @@ window.MEDS_DB.push({
       'Temperatura':               'NO congelar · refrigerado 2-8°C preferido',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar de inmediato. Desechar sobrante.',
+      dosisRestante:    'No conservar. Desechar inmediatamente.',
+      infusionPreparada:'24 h a temperatura ambiente en SF 0.9% o SG 5%.',
+      notas:            'Viales sin abrir: conservar en refrigerador (2–8 °C). A temperatura ambiente: estable hasta 12 semanas. Incompatible con barbitúricos (tiopental) en la misma línea.',
+    },
+
     presentaciones: [
       'Esmeron® 10 mg/mL vial 5 mL (50 mg) - MSD',
       'Esmeron® 10 mg/mL vial 10 mL (100 mg)',

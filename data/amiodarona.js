@@ -196,6 +196,13 @@ window.MEDS_DB.push({
       'Aspecto':                  'Amarillenta (normal, por contenido yodo) — desechar si cristales o turbidez',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar de inmediato. Desechar sobrante de la ampolla.',
+      dosisRestante:    'No conservar. Desechar inmediatamente.',
+      infusionPreparada:'2 h en PVC a temperatura ambiente / hasta 24 h en envase de vidrio con SG 5%.',
+      notas:            'Usar exclusivamente SG 5%. Incompatible con SF 0.9% (precipita). Usar tubuladuras de PVC solo para infusión corta < 2 h.',
+    },
+
     presentaciones: [
       'Amiodarona 150 mg/3 mL solución inyectable — ampolla 3 mL',
       'Amiodarona 300 mg/10 mL solución inyectable — ampolla 10 mL (algunas marcas)',

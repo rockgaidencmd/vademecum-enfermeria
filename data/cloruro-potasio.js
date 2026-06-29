@@ -188,6 +188,13 @@ window.MEDS_DB.push({
       'Contenedor':                  'Compatible con PVC, vidrio y polipropileno',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar de inmediato. Desechar sobrante. RIESGO VITAL si se administra sin diluir.',
+      dosisRestante:    'No conservar. Desechar inmediatamente. NUNCA guardar ampollas parcialmente utilizadas.',
+      infusionPreparada:'24 h a temperatura ambiente una vez diluido correctamente en SF 0.9% o SG 5%.',
+      notas:            'MEDICAMENTO DE ALTO RIESGO. Nunca administrar sin diluir. Concentración máxima periférica: 40 mEq/L. Desechar si hay partículas o cambio de color.',
+    },
+
     presentaciones: [
       'KCl 10 mEq/10 mL (1 mEq/mL) — ampolla 10 mL',
       'KCl 20 mEq/10 mL (2 mEq/mL) — ampolla 10 mL',

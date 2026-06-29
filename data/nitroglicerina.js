@@ -241,6 +241,13 @@ window.MEDS_DB.push({
       'Temperatura':               'NO congelar · 15-25°C · Proteger luz directa',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar de inmediato. Desechar sobrante.',
+      dosisRestante:    'No conservar. Desechar inmediatamente.',
+      infusionPreparada:'24 h a temperatura ambiente en envase de vidrio / 48 h en PVC específico sin DEHP.',
+      notas:            'Se adsorbe fuertemente al PVC estándar (pérdida > 40%). Usar OBLIGATORIAMENTE envases y tubuladuras de vidrio, polietileno o PVC especial. Cubrir con funda opaca.',
+    },
+
     presentaciones: [
       'Solinitrina 1 mg/mL ampolla 5 mL (5 mg) - ámbar',
       'Solinitrina Fuerte 5 mg/mL ampolla 10 mL (50 mg) - alta concentración',

@@ -173,6 +173,13 @@ window.MEDS_DB.push({
       'Temperatura':                 'NO congelar · 15-25°C',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Liofilizado reconstituido: usar dentro de las 6 h a temperatura ambiente.',
+      dosisRestante:    'Reconstitución sin diluir: hasta 3 días refrigerada (2–8 °C). Anotar fecha y hora.',
+      infusionPreparada:'6 h a temperatura ambiente / 3 días refrigerada (2–8 °C) en SF 0.9% o SG 5%.',
+      notas:            'No mezclar con calcio IV (precipita, especialmente en neonatos). Incompatible con Ringer lactato.',
+    },
+
     presentaciones: [
       'Ceftriaxona 1 g vial liofilizado para inyección',
       'Ceftriaxona 2 g vial liofilizado para inyección',

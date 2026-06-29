@@ -187,6 +187,13 @@ window.MEDS_DB.push({
       'Aspecto':                    'Clara, viscosa, amarillo paja a verde claro — desechar si turbidez, partículas, color alterado',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar dentro de las 4 h de apertura del frasco. Desechar sobrante.',
+      dosisRestante:    'Desechar. No conservar ni reutilizar el frasco parcialmente utilizado más de 4 h.',
+      infusionPreparada:'Administrar en las 4 h siguientes a la apertura. No se suele diluir; si se diluye, usar SF 0.9%.',
+      notas:            'No diluir con agua para inyección. Desechar si hay turbidez, color inusual o precipitado visible.',
+    },
+
     presentaciones: [
       'Albúmina humana 20% — frasco 50 mL (10 g de albúmina)',
       'Albúmina humana 20% — frasco 100 mL (20 g de albúmina)',

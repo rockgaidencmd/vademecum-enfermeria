@@ -181,6 +181,13 @@ window.MEDS_DB.push({
       'Aspecto':                     'Transparente, incolora, sin partículas — desechar si hay turbidez o color',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Vial multidosis: 28 días a temperatura ambiente (15–25 °C). Anotar fecha de apertura en el vial.',
+      dosisRestante:    'Vial multidosis abierto: conservar a temperatura ambiente hasta 28 días desde la apertura.',
+      infusionPreparada:'24 h a temperatura ambiente en SF 0.9% o SG 5%. Purgar el sistema de infusión antes de conectar al paciente.',
+      notas:            'La insulina se adsorbe al PVC (pérdida 10–40% en las primeras horas). Purgar el sistema 20–30 min antes de conectar. Desechar si hay turbidez o precipitado.',
+    },
+
     presentaciones: [
       'Insulina Regular Humana 100 UI/mL — vial 10 mL (1000 UI total)',
       'Insulina Regular Humana 100 UI/mL — cartucho 3 mL (300 UI)',

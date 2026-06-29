@@ -236,6 +236,13 @@ window.MEDS_DB.push({
       'Temperatura':              'NO congelar · 15-25°C',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar de inmediato. Desechar sobrante.',
+      dosisRestante:    'No conservar. Desechar inmediatamente (administración habitualmente en bolo).',
+      infusionPreparada:'Estable 24 h a temperatura ambiente en SF 0.9% o SG 5%. Infusión continua poco habitual.',
+      notas:            'Compatible con la mayoría de soluciones IV. Desechar si hay cambio de color o precipitado.',
+    },
+
     presentaciones: [
       'Atropina Sulfato 1 mg/mL — ampolla 1 mL (presentación estándar)',
       'Atropina Sulfato 0.5 mg/mL — ampolla 1 mL',

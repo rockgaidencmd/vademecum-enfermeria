@@ -150,6 +150,13 @@ window.MEDS_DB.push({
       'Aspecto':                     'Incolora a ligeramente amarillenta — desechar si turbidez',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Reconstitución del liofilizado: usar dentro de las 4 h a temperatura ambiente.',
+      dosisRestante:    'Conservar reconstitución hasta 12 h en refrigerador (2–8 °C). Anotar hora de reconstitución.',
+      infusionPreparada:'4 h a temperatura ambiente / 12 h refrigerada (2–8 °C) en SF 0.9% o SG 5%.',
+      notas:            'Sensible a la luz y a la temperatura. Administrar preferentemente dentro de los 60 min de preparación cuando sea posible.',
+    },
+
     presentaciones: [
       'Omeprazol 40 mg vial liofilizado + solvente 10 mL — vial inyectable',
       'Omeprazol 20 mg, 40 mg cápsulas (uso VO)',

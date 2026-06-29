@@ -179,6 +179,13 @@ window.MEDS_DB.push({
       'Aspecto':                    'Transparente, incolora — desechar si turbidez o precipitado',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Vial multidosis: conservar refrigerado tras la primera apertura. Anotar fecha y hora de apertura.',
+      dosisRestante:    'Vial multidosis: refrigerar y usar dentro de los 28 días. Anotar fecha de apertura en el vial.',
+      infusionPreparada:'24 h a temperatura ambiente en SF 0.9% o SG 5%.',
+      notas:            'VERIFICAR SIEMPRE la concentración del vial (5.000 UI/mL vs 25.000 UI/mL). Error de concentración puede ser fatal. Usar bomba de infusión obligatoriamente.',
+    },
+
     presentaciones: [
       'Heparina Sódica 25,000 UI/5 mL solución inyectable — ampolla 5 mL',
       'Heparina Sódica 5,000 UI/mL solución inyectable — ampolla 1 mL',

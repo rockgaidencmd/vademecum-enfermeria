@@ -238,6 +238,13 @@ window.MEDS_DB.push({
       'Temperatura':                  'NO congelar · 15-25°C',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Reconstitución del polvo: usar en 12 h a temperatura ambiente o 24 h refrigerada (2–8 °C).',
+      dosisRestante:    'Conservar reconstitución hasta 12 h a temperatura ambiente. Anotar hora de reconstitución.',
+      infusionPreparada:'12 h a temperatura ambiente (SF 0.9%) / 3 días refrigerada (2–8 °C). En SG 5%: máximo 2 h.',
+      notas:            'Usar SF 0.9% preferentemente (mayor estabilidad). Aminoglucósidos son incompatibles en la misma solución (inactivación mutua) — administrar por vía separada.',
+    },
+
     presentaciones: [
       'Piperacilina/Tazobactam 4 g/0.5 g vial (más usado en adulto)',
       'Piperacilina/Tazobactam 2 g/0.25 g vial (dosis pediátrica)',

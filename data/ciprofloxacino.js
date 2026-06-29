@@ -247,6 +247,13 @@ window.MEDS_DB.push({
       'Temperatura':                'NO congelar · NO refrigerar (precipitación) · 15-25°C',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Presentación premezclada: una vez abierta, usar en el mismo turno (máx. 24 h refrigerada).',
+      dosisRestante:    'Desechar sobrante del frasco premezclado. No guardar frascos parcialmente usados.',
+      infusionPreparada:'24 h a temperatura ambiente / 14 días congelada (−20 °C) la bolsa premezclada sin abrir.',
+      notas:            'Proteger de la luz. Administrar en 60 min. No mezclar con otros antibióticos en la misma línea.',
+    },
+
     presentaciones: [
       'Ciprofloxacino 200 mg/100 mL bolsa premezclada IV',
       'Ciprofloxacino 400 mg/200 mL bolsa premezclada IV',

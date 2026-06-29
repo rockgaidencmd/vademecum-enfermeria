@@ -244,6 +244,13 @@ window.MEDS_DB.push({
       'Temperatura':                   'NO congelar · 15-25°C',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Reconstitución: usar dentro de las 48 h si se conserva refrigerada.',
+      dosisRestante:    'Conservar reconstitución hasta 48 h en refrigerador (2–8 °C).',
+      infusionPreparada:'24 h a temperatura ambiente / 48 h refrigerada (2–8 °C) en SF 0.9% o SG 5%.',
+      notas:            'Dosis altas (≥ 500 mg): infundir en 30–60 min mínimo. Incompatible con heparina en la misma solución.',
+    },
+
     presentaciones: [
       'Solu-Moderin® 40 mg vial + 1 mL solvente (Pfizer)',
       'Solu-Moderin® 125 mg vial + 2 mL solvente',

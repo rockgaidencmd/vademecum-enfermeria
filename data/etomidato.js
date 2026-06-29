@@ -249,6 +249,13 @@ window.MEDS_DB.push({
       'Temperatura':                'NO congelar · 15-25°C',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar de inmediato. Desechar sobrante (administración en bolo único de inducción).',
+      dosisRestante:    'No conservar. Desechar inmediatamente.',
+      infusionPreparada:'No se usa en infusión continua para sedación mantenida (supresión adrenal cortisol). Bolo único de inducción anestésica.',
+      notas:            'Presentación lipídica (Lipuro®): desechar si hay separación de fases o cambio de aspecto. Verificar visualmente antes de usar.',
+    },
+
     presentaciones: [
       'Etomidato Lipuro® 2 mg/mL emulsión - ampolla 10 mL (B. Braun)',
       'Hypnomidate® 2 mg/mL solución propilenglicol - ampolla 10 mL',

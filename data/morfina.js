@@ -242,6 +242,13 @@ window.MEDS_DB.push({
       'Aspecto':                     'Transparente, incolora — DESECHAR si amarillenta, marrón o turbidez',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar de inmediato. Desechar sobrante (estupefaciente controlado — registrar destrucción).',
+      dosisRestante:    'No conservar. Desechar y registrar conforme a normativa de estupefacientes. Requiere doble firma.',
+      infusionPreparada:'24 h a temperatura ambiente / 7 días refrigerada (2–8 °C) en SF 0.9% o SG 5%, protegida de la luz.',
+      notas:            'Fármaco controlado — registrar preparación y destrucción. Compatible con ketamina, midazolam e insulina en mezclas PCA. Proteger de la luz.',
+    },
+
     presentaciones: [
       'Morfina HCl 10 mg/mL ampolla 1 mL (10 mg)',
       'Morfina HCl 20 mg/mL ampolla 1 mL (20 mg) - alta concentración',

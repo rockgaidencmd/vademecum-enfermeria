@@ -173,6 +173,13 @@ window.MEDS_DB.push({
       'Temperatura':                'NO congelar · NO refrigerar · 15-25°C ideal',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Frasco premezclado: una vez abierto, administrar en los 15 min siguientes. Desechar sobrante.',
+      dosisRestante:    'Desechar el frasco parcialmente utilizado inmediatamente. No guardar.',
+      infusionPreparada:'Administrar en 15 min sin dilución adicional. Desechar sobrante al finalizar.',
+      notas:            'La presentación IV no requiere dilución. Usar sistema de infusión cerrado. Desechar si hay turbidez, cambio de color o partículas visibles.',
+    },
+
     presentaciones: [
       'Paracetamol 1 g/100 mL frasco premezclado IV (Perfalgan®)',
       'Paracetamol 500 mg/50 mL frasco pediátrico IV',

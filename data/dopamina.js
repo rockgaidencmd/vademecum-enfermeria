@@ -201,6 +201,13 @@ window.MEDS_DB.push({
       'Temperatura':              'NO congelar · 15-25°C',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar de inmediato. Desechar sobrante.',
+      dosisRestante:    'No conservar. Desechar inmediatamente.',
+      infusionPreparada:'24 h a temperatura ambiente / 48 h refrigerada (2–8 °C) en SG 5% o SF 0.9%.',
+      notas:            'Desechar si la solución vira a rosa, violeta o amarillo oscuro. Proteger de la luz. Incompatible con soluciones alcalinas y bicarbonato.',
+    },
+
     presentaciones: [
       'Dopamina 200 mg/5 mL ampolla (40 mg/mL)',
       'Dopamina 400 mg/10 mL ampolla (40 mg/mL)',

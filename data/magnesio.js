@@ -161,6 +161,13 @@ window.MEDS_DB.push({
       'Aspecto':                'Transparente, incolora — desechar si turbidez',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Usar de inmediato. Desechar sobrante de la ampolla.',
+      dosisRestante:    'No conservar. Desechar inmediatamente.',
+      infusionPreparada:'Estable 24 h a temperatura ambiente en SF 0.9% o SG 5%.',
+      notas:            'Precipita con carbonatos y bicarbonatos. Incompatible con calcio en la misma línea IV. Desechar si hay precipitado visible.',
+    },
+
     presentaciones: [
       'Sulfato de Magnesio 500 mg/mL solución inyectable — ampolla 10 mL',
       'Sulfato de Magnesio 1 g/2 mL solución inyectable — ampolla 2 mL',

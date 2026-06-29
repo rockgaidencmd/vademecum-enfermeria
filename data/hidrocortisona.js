@@ -177,6 +177,13 @@ window.MEDS_DB.push({
       'Aspecto':                     'Incolora a ligeramente amarillenta — desechar si turbidez',
     },
 
+    estabilidadUsoClinico: {
+      ampollaAbierta:   'Reconstitución: usar dentro de las 3 h a temperatura ambiente.',
+      dosisRestante:    'Conservar reconstitución hasta 3 h a temperatura ambiente / 24 h en refrigerador (2–8 °C).',
+      infusionPreparada:'24 h a temperatura ambiente / 48 h refrigerada (2–8 °C) en SF 0.9% o SG 5%.',
+      notas:            'Reconstituir con el solvente incluido. Desechar si hay turbidez o precipitado.',
+    },
+
     presentaciones: [
       'Hidrocortisona Succinato Sódico 100 mg vial liofilizado + solvente 2 mL',
       'Hidrocortisona Succinato Sódico 500 mg vial liofilizado',
