@@ -1565,9 +1565,11 @@ img { display: block; max-width: 100%; }
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  white-space: nowrap;
+  white-space: normal;
+  word-break: break-word;
   padding-right: 14px;
-  width: 35%;
+  width: 38%;
+  max-width: 38%;
 }
 
 .prep-table td:last-child {
