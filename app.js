@@ -17,6 +17,7 @@ const State = {
   recentMeds: [],
   recentExpanded: false,
   searchOpen: false,
+  hemoTab: 'hemocomponentes',
 };
 
 /* ─── DOM REFS ───────────────────────────────────────── */
@@ -303,6 +304,7 @@ function navigateTo(view) {
   if (view === 'favoritos') renderFavoritos();
   if (view === 'alto-riesgo') renderAltoRiesgo();
   if (view === 'categorias') renderCategorias();
+  if (view === 'hemoterapia') renderHemoterapia();
 
   // Registrar en historial del navegador (botón atrás del celular)
   if (!State._skipHistory) {
@@ -474,6 +476,50 @@ function showCategoryMeds(catId) {
   if (!State._skipHistory) {
     history.pushState({ view: 'cat-meds', catId }, '', '#cat-' + catId);
   }
+}
+
+/* ═══════════════════════════════════════════════════════
+   RENDER — HEMOTERAPIA (Hemocomponentes / Hemoderivados)
+═══════════════════════════════════════════════════════ */
+const HEMO_TABS = {
+  hemocomponentes: {
+    label: 'Hemocomponentes',
+    desc: 'Elementos separados de la sangre total por centrifugación o congelación en el banco de sangre (sangre total, hematíes, plaquetas, plasma, crioprecipitado).',
+  },
+  hemoderivados: {
+    label: 'Hemoderivados',
+    desc: 'Productos farmacéuticos obtenidos por fraccionamiento industrial de grandes pools de plasma (albúmina, inmunoglobulinas, concentrados de factores de coagulación).',
+  },
+};
+
+function renderHemoterapia() {
+  const desc = $('hemoTabDesc');
+  const list = $('hemoList');
+  if (!list) return;
+
+  // Sincronizar pestañas activas con el estado
+  document.querySelectorAll('.hemo-tab').forEach(tab => {
+    const active = tab.dataset.hemoTab === State.hemoTab;
+    tab.classList.toggle('active', active);
+    tab.setAttribute('aria-selected', String(active));
+  });
+
+  const info = HEMO_TABS[State.hemoTab] || HEMO_TABS.hemocomponentes;
+  if (desc) desc.textContent = info.desc;
+
+  const meds = MEDS_DB.filter(m => m.categoria === State.hemoTab);
+  list.innerHTML = meds.length > 0
+    ? meds.map(med => medCardHTML(med)).join('')
+    : `<div class="empty-state"><span class="empty-icon">🩸</span><p>Sin productos en esta sección aún.</p></div>`;
+  bindMedCards(list);
+
+  // Bind de las pestañas (idempotente: se re-vincula en cada render)
+  document.querySelectorAll('.hemo-tab').forEach(tab => {
+    tab.onclick = () => {
+      State.hemoTab = tab.dataset.hemoTab;
+      renderHemoterapia();
+    };
+  });
 }
 
 /* ═══════════════════════════════════════════════════════
