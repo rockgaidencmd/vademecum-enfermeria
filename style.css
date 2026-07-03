@@ -1203,6 +1203,49 @@ img { display: block; max-width: 100%; }
 }
 
 
+/* ─── HEMOTERAPIA · PESTAÑAS ─────────────────────────── */
+.hemo-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 4px;
+  margin: 4px 16px 0;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.hemo-tab {
+  flex: 1;
+  padding: 11px 8px;
+  border-radius: var(--radius-md);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.hemo-tab:hover { color: var(--text-primary); }
+
+.hemo-tab.active {
+  color: #fff;
+  background: linear-gradient(135deg, rgba(255, 59, 59, 0.9), rgba(201, 34, 39, 0.9));
+  border-color: var(--risk-red);
+  box-shadow: 0 0 14px rgba(255, 59, 59, 0.25);
+}
+
+.hemo-tab-desc {
+  margin: 12px 16px 4px;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+
 /* ═══════════════════════════════════════════════════════
    FICHA DE MEDICAMENTO
 ═══════════════════════════════════════════════════════ */
