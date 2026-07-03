@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════
-   VADEMÉCUM ENFERMERÍA — Service Worker v6
+   VADEMÉCUM ENFERMERÍA — Service Worker v7
    Limpia todo el caché, se desregistra y deja
    que el navegador cargue siempre desde red.
 ═══════════════════════════════════════════════ */

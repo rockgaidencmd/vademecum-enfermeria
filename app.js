@@ -267,6 +267,12 @@ function bindNavigation() {
       navigateTo('categorias');
     });
   });
+
+  // Acceso destacado de Hemoterapia en el inicio
+  const hemoAccess = document.querySelector('.home-hemo-access');
+  if (hemoAccess) {
+    hemoAccess.addEventListener('click', () => navigateTo('hemoterapia'));
+  }
 }
 
 function navigateTo(view) {
