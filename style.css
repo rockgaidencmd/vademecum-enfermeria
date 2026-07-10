@@ -225,6 +225,23 @@
 [data-theme="light"] .topbar-theme-btn .icon-sun { display: block; }
 [data-theme="light"] .topbar-theme-btn .icon-moon { display: none; }
 
+/* ─── BOTÓN INSTALAR APP (topbar) ─────────────────────── */
+.topbar-install-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  color: var(--teal);
+  transition: color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+.topbar-install-btn:hover {
+  color: var(--cyan);
+  background: var(--cyan-glow);
+}
+
 /* ─── RESET ───────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1243,6 +1260,76 @@ img { display: block; max-width: 100%; }
   font-size: 0.78rem;
   line-height: 1.5;
   color: var(--text-secondary);
+}
+
+/* ─── BANNER DE INSTALACIÓN (PWA) EN INICIO ──────────── */
+.install-banner {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  width: calc(100% - 32px);
+  margin: 4px 16px 8px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--teal);
+  background: linear-gradient(135deg, rgba(0, 255, 179, 0.14), rgba(0, 153, 187, 0.08));
+  overflow: hidden;
+}
+
+.install-banner-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  padding: 14px 12px 14px 16px;
+  cursor: pointer;
+  text-align: left;
+  background: transparent;
+  transition: background 0.2s;
+}
+
+.install-banner-main:hover {
+  background: rgba(0, 255, 179, 0.08);
+}
+
+.install-banner-main:active { transform: scale(0.99); }
+
+.ib-icon { font-size: 1.6rem; line-height: 1; flex-shrink: 0; }
+
+.ib-text { display: flex; flex-direction: column; flex: 1; gap: 2px; }
+
+.ib-title {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+.ib-sub {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+.ib-arrow {
+  font-size: 1.5rem;
+  color: var(--teal);
+  flex-shrink: 0;
+}
+
+.install-banner-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  flex-shrink: 0;
+  color: var(--text-muted);
+  border-left: 1px solid var(--border);
+  transition: color 0.2s, background 0.2s;
+}
+
+.install-banner-close:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 /* ─── HEMOTERAPIA · ACCESO DESTACADO EN INICIO ───────── */

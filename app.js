@@ -18,6 +18,7 @@ const State = {
   recentExpanded: false,
   searchOpen: false,
   hemoTab: 'hemocomponentes',
+  deferredInstallPrompt: null,
 };
 
 /* ─── DOM REFS ───────────────────────────────────────── */
@@ -46,6 +47,10 @@ const Dom = {
   favList:       $('favList'),
   statMeds:      $('statMeds'),
   backToTop:     $('backToTop'),
+  installToggle:     $('installToggle'),
+  installBannerHome: $('installBannerHome'),
+  installBannerBtn:  $('installBannerBtn'),
+  installBannerClose: $('installBannerClose'),
 };
 
 /* ═══════════════════════════════════════════════════════
@@ -78,7 +83,69 @@ function initApp() {
   bindSideNav();
   bindHistory();
   bindThemeToggle();
+  bindInstall();
   if (Dom.recentClear) Dom.recentClear.addEventListener('click', clearRecent);
+}
+
+/* ═══════════════════════════════════════════════════════
+   INSTALACIÓN PWA (Android/Chrome)
+═══════════════════════════════════════════════════════ */
+function bindInstall() {
+  // Ya instalada / abierta como app standalone: no mostrar nada
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+    || window.navigator.standalone === true;
+  if (isStandalone) return;
+
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    State.deferredInstallPrompt = e;
+    showInstallUI();
+  });
+
+  window.addEventListener('appinstalled', () => {
+    State.deferredInstallPrompt = null;
+    hideInstallUI();
+    try { localStorage.setItem('vade_install_dismissed', '1'); } catch {}
+  });
+
+  if (Dom.installToggle) {
+    Dom.installToggle.addEventListener('click', triggerInstallPrompt);
+  }
+  if (Dom.installBannerBtn) {
+    Dom.installBannerBtn.addEventListener('click', triggerInstallPrompt);
+  }
+  if (Dom.installBannerClose) {
+    Dom.installBannerClose.addEventListener('click', () => {
+      Dom.installBannerHome.classList.add('hidden');
+      try { localStorage.setItem('vade_install_banner_dismissed', '1'); } catch {}
+    });
+  }
+}
+
+function showInstallUI() {
+  if (Dom.installToggle) Dom.installToggle.classList.remove('hidden');
+
+  let bannerDismissed = false;
+  try { bannerDismissed = localStorage.getItem('vade_install_banner_dismissed') === '1'; } catch {}
+  if (Dom.installBannerHome && !bannerDismissed) {
+    Dom.installBannerHome.classList.remove('hidden');
+  }
+}
+
+function hideInstallUI() {
+  if (Dom.installToggle) Dom.installToggle.classList.add('hidden');
+  if (Dom.installBannerHome) Dom.installBannerHome.classList.add('hidden');
+}
+
+async function triggerInstallPrompt() {
+  if (!State.deferredInstallPrompt) return;
+  State.deferredInstallPrompt.prompt();
+  try {
+    await State.deferredInstallPrompt.userChoice;
+  } finally {
+    State.deferredInstallPrompt = null;
+    hideInstallUI();
+  }
 }
 
 /* ═══════════════════════════════════════════════════════
