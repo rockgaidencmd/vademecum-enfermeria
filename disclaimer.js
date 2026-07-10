@@ -7,6 +7,11 @@
 
 function showDisclaimerModal() {
   if (localStorage.getItem('vade_disclaimer_accepted')) return;
+  // No mostrar el aviso legal mientras la app no esté activada.
+  // Tras activar, activation.js vuelve a invocar esta función.
+  if (localStorage.getItem('vade_activated') !== '1') return;
+  // Evitar duplicados si ya hay un modal abierto
+  if (document.querySelector('.disclaimer-modal')) return;
 
   const modal = document.createElement('div');
   modal.className = 'disclaimer-modal';
