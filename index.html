@@ -82,6 +82,13 @@
         <span class="topbar-title-vade">VADEMÉCUM</span>
         <span class="topbar-title-enf">ENF</span>
       </div>
+      <button class="topbar-install-btn hidden" id="installToggle" aria-label="Instalar aplicación" title="Instalar aplicación">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7,10 12,15 17,10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+      </button>
       <button class="topbar-theme-btn" id="themeToggle" aria-label="Cambiar tema">
         <!-- Sol: visible en modo claro para volver a oscuro -->
         <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -214,6 +221,19 @@
             <span class="stat-num">🔴</span>
             <span class="stat-label">Alto riesgo</span>
           </div>
+        </div>
+
+        <!-- Banner de instalación (PWA) -->
+        <div class="install-banner hidden" id="installBannerHome">
+          <button class="install-banner-main" id="installBannerBtn" aria-label="Instalar aplicación">
+            <span class="ib-icon">📲</span>
+            <span class="ib-text">
+              <span class="ib-title">Instalar aplicación</span>
+              <span class="ib-sub">Acceso directo desde tu pantalla de inicio, sin navegador</span>
+            </span>
+            <span class="ib-arrow">›</span>
+          </button>
+          <button class="install-banner-close" id="installBannerClose" aria-label="Cerrar aviso de instalación">✕</button>
         </div>
 
         <!-- Acceso destacado: Hemoterapia -->
