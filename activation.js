@@ -1,21 +1,52 @@
 /* ═══════════════════════════════════════════════════════
    VADEMÉCUM ENFERMERÍA — activation.js
-   Puerta de activación por código (offline, sin backend).
-   El código se valida contra hashes SHA-256 con salt.
-   Una vez activado el dispositivo, no se vuelve a pedir.
+   Puerta de activación por código con Firebase (Firestore).
+   Sistema: 1 código = 1 dispositivo (colección compartida
+   'codigos_pct'). El SDK de Firebase se carga bajo demanda.
 ═══════════════════════════════════════════════════════ */
 
 'use strict';
 
 (function () {
-  const SALT = 'vademecum-enf::v1::activacion';
-  const LS_KEY = 'vade_activated';
+  // ── Configuración Firebase (misma base de datos de códigos) ──
+  const firebaseConfig = {
+    apiKey:            'AIzaSyApl919VrDKdV1AdHtZsrVYUC0zym-ZrZs',
+    authDomain:        'medishort360-f6f20.firebaseapp.com',
+    projectId:         'medishort360-f6f20',
+    storageBucket:     'medishort360-f6f20.firebasestorage.app',
+    messagingSenderId: '127659670697',
+    appId:             '1:127659670697:web:b845e760917ba77e253db8',
+  };
+
+  const COLECCION   = 'codigos_pct';
+  const LS_KEY      = 'vade_activado';   // clave propia del Vademécum
+  const LS_CODE_KEY = 'vade_codigo';
 
   const isActivated = () => {
     try { return localStorage.getItem(LS_KEY) === '1'; } catch { return false; }
   };
 
-  // Normaliza cualquier entrada a formato PCT-XXXX-XXXX-XXXX
+  // ── Huella del dispositivo (IDÉNTICA a la app PRO2-MEDISHORT360PCT) ──
+  function generarDispositivoId() {
+    const datos = [
+      navigator.language || '',
+      navigator.platform || '',
+      screen.width + 'x' + screen.height,
+      screen.colorDepth,
+      Intl.DateTimeFormat().resolvedOptions().timeZone || '',
+      navigator.hardwareConcurrency || '',
+      navigator.deviceMemory || '',
+    ].join('|');
+    let hash = 0;
+    for (let i = 0; i < datos.length; i++) {
+      const char = datos.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash;
+    }
+    return 'dev_' + Math.abs(hash).toString(36);
+  }
+
+  // Normaliza cualquier entrada a formato PCT-XXXX-XXXX-XXXX (id del documento)
   function normalizeCode(input) {
     const up = (input || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
     if (up.length === 15 && up.startsWith('PCT')) {
@@ -24,19 +55,79 @@
     return (input || '').trim().toUpperCase();
   }
 
-  async function sha256Hex(str) {
-    const data = new TextEncoder().encode(str);
-    const buf = await crypto.subtle.digest('SHA-256', data);
-    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+  // Decisión pura sobre el estado del código (testeable sin red)
+  function decidir(data, dispositivoId) {
+    if (data.estado === 'DESACTIVADO' || data.activo === false) {
+      return { valido: false, razon: 'inactivo' };
+    }
+    const guardado = data.dispositivo_id || '';
+    if (data.estado === 'DISPONIBLE' && guardado === '') {
+      return { valido: true, enlazar: true };
+    }
+    if (data.estado === 'USADO' && guardado === dispositivoId) {
+      return { valido: true };
+    }
+    if (data.estado === 'USADO' && guardado !== dispositivoId) {
+      return { valido: false, razon: 'otro_dispositivo' };
+    }
+    return { valido: false, razon: 'no_encontrado' };
   }
 
-  async function isValidCode(rawInput) {
-    const code = normalizeCode(rawInput);
-    if (!/^PCT-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(code)) return false;
-    const hashes = window.ACTIVATION_HASHES || [];
-    const hash = await sha256Hex(SALT + code);
-    return hashes.includes(hash);
+  // ── Carga diferida del SDK de Firebase ──
+  let _fb = null;
+  async function getFirebase() {
+    if (_fb) return _fb;
+    const [{ initializeApp }, fs] = await Promise.all([
+      import('https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js'),
+      import('https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js'),
+    ]);
+    const app = initializeApp(firebaseConfig, 'vade-' + COLECCION);
+    const db = fs.getFirestore(app);
+    _fb = { db, doc: fs.doc, getDoc: fs.getDoc, updateDoc: fs.updateDoc };
+    return _fb;
   }
+
+  async function verificarCodigo(rawInput) {
+    const codigo = normalizeCode(rawInput);
+    if (!/^PCT-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/.test(codigo)) {
+      return { valido: false, razon: 'no_encontrado' };
+    }
+    const dispositivoId = generarDispositivoId();
+
+    let fb;
+    try { fb = await getFirebase(); }
+    catch (e) { return { valido: false, razon: 'error_red' }; }
+
+    let docSnap;
+    try {
+      docSnap = await fb.getDoc(fb.doc(fb.db, COLECCION, codigo));
+    } catch (e) {
+      return { valido: false, razon: 'error_red' };
+    }
+    if (!docSnap.exists()) return { valido: false, razon: 'no_encontrado' };
+
+    const veredicto = decidir(docSnap.data(), dispositivoId);
+    if (veredicto.valido && veredicto.enlazar) {
+      try {
+        await fb.updateDoc(fb.doc(fb.db, COLECCION, codigo), {
+          estado: 'USADO',
+          dispositivo_id: dispositivoId,
+          fecha_activacion: new Date().toISOString(),
+        });
+      } catch (e) {
+        return { valido: false, razon: 'error_escritura' };
+      }
+    }
+    return veredicto;
+  }
+
+  const MENSAJES = {
+    no_encontrado:    'Código inválido. Verifica e inténtalo de nuevo.',
+    inactivo:         'Este código ha sido desactivado.',
+    otro_dispositivo: 'Este código ya está en uso en otro dispositivo.',
+    error_red:        'Sin conexión. Necesitas internet para activar por primera vez.',
+    error_escritura:  'Error al activar. Inténtalo de nuevo.',
+  };
 
   // Continúa el flujo normal de arranque (aviso legal) tras activar
   function continueAfterActivation() {
@@ -116,16 +207,17 @@
       btn.disabled = true;
       btn.textContent = 'Verificando…';
 
-      let ok = false;
+      let resultado;
       try {
-        ok = await isValidCode(input.value);
+        resultado = await verificarCodigo(input.value);
       } catch (err) {
-        ok = false;
+        resultado = { valido: false, razon: 'error_red' };
       }
 
-      if (ok) {
+      if (resultado.valido) {
         try {
           localStorage.setItem(LS_KEY, '1');
+          localStorage.setItem(LS_CODE_KEY, normalizeCode(input.value));
           localStorage.setItem('vade_activated_at', new Date().toISOString());
         } catch {}
         btn.textContent = '¡Activado! ✓';
@@ -138,7 +230,7 @@
       } else {
         btn.disabled = false;
         btn.textContent = 'Activar';
-        errorEl.textContent = 'Código no válido. Verifica e inténtalo de nuevo.';
+        errorEl.textContent = MENSAJES[resultado.razon] || 'Código inválido.';
         gate.classList.add('act-shake');
         input.focus();
         input.select();
@@ -151,11 +243,11 @@
   // Arranque: tras el splash, decidir si mostrar la puerta
   window.addEventListener('load', () => {
     setTimeout(() => {
-      if (isActivated()) return; // ya activado → el flujo normal (aviso legal) sigue su curso
+      if (isActivated()) return; // ya activado → sigue el flujo normal (aviso legal)
       showGate();
     }, 2750);
   });
 
-  // Exponer por si se necesita en consola/pruebas
-  window.__vadeActivation = { isActivated, isValidCode, normalizeCode };
+  // Exponer para pruebas/consola
+  window.__vadeActivation = { isActivated, verificarCodigo, normalizeCode, generarDispositivoId, decidir };
 })();
